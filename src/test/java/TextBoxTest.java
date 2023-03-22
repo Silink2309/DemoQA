@@ -6,21 +6,20 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class TextBoxTest {
-    WebDriver driver;
+public class TextBoxTest extends BaseTest{
+    TextBox objTextBox = new TextBox(getDriver());
     @Before
-    public void openTest(){
-        driver = new SafariDriver();
-        driver.get("https://demoqa.com/text-box");
+    public void openPage(){
+        openUrl(СonstantUrl.urlTextBox);
     }
     @Test
     public void fillFormAndSend(){
-        TextBox objTextBox = new TextBox(driver);
+       // TextBox objTextBox = new TextBox(driv);
         objTextBox.fillForm("Maks","rigt@gmail.com","Moscow","Moscow");
 
     }
     @After
-    public void tearDown() {
-        driver.quit();
+    public void quitDriver() {
+        baseAfter(getDriver());
     }
 }

@@ -3,33 +3,27 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 
-public class RadioButtonTest {
-    WebDriver driver;
-    String url ="https://demoqa.com/radio-button";
+public class RadioButtonTest extends BaseTest {
+    RadioButton objRadioButton = new RadioButton(getDriver());
     @Before
     public void openTest(){
-        driver = new SafariDriver();
-        driver.get(url);
+      openUrl(СonstantUrl.urlRadioButton);
     }
     @Test
     public void testYesButton(){
-        RadioButton objRadioButton = new RadioButton(driver);
         objRadioButton.testYesButton();
     }
     @Test
     public void testImpressiveButton(){
-        RadioButton objRadioButton = new RadioButton(driver);
         objRadioButton.testImpressiveButton();
     }
     @Test
     public void testNoButton(){
-        RadioButton objRadioButton = new RadioButton(driver);
         objRadioButton.testNoButton();
     }
     @After
-    public void tearDown() {
-        driver.quit();
+    public void quitDriver() {
+        baseAfter(getDriver());
     }
 }

@@ -2,6 +2,11 @@ package elements;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class WebTables {
     WebDriver driver;
@@ -11,27 +16,18 @@ public class WebTables {
 
     // Локаторы регистрации
     private final By addUserButton = By.xpath("//button[@class='btn btn-primary']");
-             private final By firstNameFiledRegister = By.xpath("(//input[@class=' mr-sm-2 form-control'])[1]");
-             private final By lastNameFiledRegister = By.xpath("(//input[@class=' mr-sm-2 form-control'])[2]");
-             private final By emailFiledRegister = By.xpath("");
-             private final By ageFiledRegister = By.xpath("");
-             private final By salaryFiledRegister = By.xpath("");
-             private final By departmentFiledRegister = By.xpath("");
-             private final By submitButtonRegister = By.xpath("");
+             private final By firstNameFiled = By.id("firstName");
+             private final By lastNameFiled = By.id("lastName");
+             private final By emailFiled = By.id("userEmail");
+             private final By ageFiled = By.id("age");
+             private final By salaryFiled = By.id("salary");
+             private final By departmentFiled = By.id("department");
+             private final By submitButton = By.id("submit");
     private final By pageFiled =By.xpath("//input[@type='number']");
     private final By fieldSearch = By.className("form-control");
 
     //Локаторы Изменения уже созданных записей
     private final By editButton = By.xpath("(//span[@class='mr-2'])[3]");
-            private final By firstNameFiledEdit = By.xpath("(//input[@class=' mr-sm-2 form-control'])[1]");
-            private final By lastNameFiledEdit = By.xpath("(//input[@class=' mr-sm-2 form-control'])[2]");
-            private final By emailFiledEdit = By.xpath("");
-            private final By ageFiledEdit = By.xpath("");
-            private final By salaryFiledEdit = By.xpath("");
-            private final By departmentFiledEdit = By.xpath("");
-            private final By submitButtonEdit = By.xpath("");
-
-
     private final By deleteButton = By.xpath("(//span[@title='Delete'])[3]");
 
     //Локаторы колличества отображений строк в таблице
@@ -49,13 +45,59 @@ public class WebTables {
     public void clickEditButton(){driver.findElement(editButton).click();}
     public void clickDeleteButton(){driver.findElement(deleteButton).click();}
     public void clickRowsButton(){driver.findElement(rowsButton).click();}
-    public void clickSubmitButton(){driver.findElement(submitButtonRegister).click();}
+    public void clickSubmitButton(){driver.findElement(submitButton).click();}
 
     //Заполнение полей регистрации
-        public void fillFirstNameRegister(String firstName){driver.findElement(firstNameFiledRegister).sendKeys(firstName);}
-        public void fillLastNameFiledRegister(String lastName){driver.findElement(lastNameFiledRegister).sendKeys(lastName);}
-        public void fillEmailFiledRegister(String email){driver.findElement(emailFiledRegister).sendKeys();}
-        public void fillAgeFiledRegister(String age){driver.findElement(emailFiledRegister).sendKeys();}
-        public void fillSalaryFiledRegister(String salary){driver.findElement(salaryFiledRegister).sendKeys();}
-        public void fillDepartmentFiledRegister(String department){driver.findElement(departmentFiledRegister).sendKeys();}
+        public void fillFirstNameRegister(String firstName){driver.findElement(firstNameFiled).sendKeys(firstName);}
+        public void fillLastNameFiledRegister(String lastName){driver.findElement(lastNameFiled).sendKeys(lastName);}
+        public void fillEmailFiledRegister(String email){driver.findElement(emailFiled).sendKeys(email);}
+        public void fillAgeFiledRegister(String age){driver.findElement(ageFiled).sendKeys(age);}
+        public void fillSalaryFiledRegister(String salary){driver.findElement(salaryFiled).sendKeys(salary);}
+        public void fillDepartmentFiledRegister(String department){driver.findElement(departmentFiled).sendKeys(department);}
+
+
+    public void waitForLoad(By selector) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(selector));
+    }
+
+    public void deleteFiled(By selector){
+        WebElement changesDelete = driver.findElement(selector);
+        changesDelete.clear();
+    }
+//Добавление пользователя
+public void addTest(String firstName,String lastName,String email,String age,String salary,String department){
+    waitForLoad(addUserButton);
+    clickAddUserButton();
+    waitForLoad(firstNameFiled);
+    fillFirstNameRegister(firstName);
+    fillLastNameFiledRegister(lastName);
+    fillEmailFiledRegister(email);
+    fillAgeFiledRegister(age);
+    fillSalaryFiledRegister(salary);
+    fillDepartmentFiledRegister(department);
+    clickSubmitButton();
+}
+
+//Изменение уже созданного пользователя
+    public void editTest(String firstName,String lastName,String email,String age,String salary,String department){
+        waitForLoad(editButton);
+        clickEditButton();
+        waitForLoad(firstNameFiled);
+        deleteFiled(firstNameFiled);
+        fillFirstNameRegister(firstName);
+        deleteFiled(lastNameFiled);
+        fillLastNameFiledRegister(lastName);
+        deleteFiled(emailFiled);
+        fillEmailFiledRegister(email);
+        deleteFiled(ageFiled);
+        fillAgeFiledRegister(age);
+        deleteFiled(salaryFiled);
+        fillSalaryFiledRegister(salary);
+        deleteFiled(departmentFiled);
+        fillDepartmentFiledRegister(department);
+        clickSubmitButton();
+    }
+
+
+
 }
