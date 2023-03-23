@@ -7,7 +7,7 @@ public class ButtonsTest extends BaseTest {
     Buttons objButtons = new Buttons(getDriver());
     @Before
     public void openTest(){
-        openUrl(СonstantUrl.urlButtons);
+        openUrl(Url.urlButtons);
     }
 
     @Test

@@ -9,7 +9,7 @@ public class CheckBoxTest extends  BaseTest{
 
     @Before
     public void openTest(){
-        openUrl(СonstantUrl.urlCheckBox);
+        openUrl(Url.urlCheckBox);
 
     }
 

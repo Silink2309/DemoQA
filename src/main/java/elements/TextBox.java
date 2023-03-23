@@ -18,7 +18,7 @@ public class TextBox {
     private final By permanentAddress = By.xpath("//*[@id='permanentAddress']");
 //Локатор кнопки отправить
     private final By toSend = By.xpath("//*[@id='submit']");
-    private static final String url ="https://demoqa.com/text-box";
+
 
 //Заполнение полей
         public void fillName (String name){ driver.findElement(fullName).sendKeys(name);}
@@ -37,5 +37,4 @@ public void clickToSend (){driver.findElement(toSend).click();}
             clickToSend();
     }
 
-    public String getUrl(){return url;}
 }

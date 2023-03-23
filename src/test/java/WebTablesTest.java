@@ -7,15 +7,15 @@ public class WebTablesTest extends BaseTest {
     WebTables objWebTables = new WebTables(getDriver());
     @Before
     public void openTest(){
-        openUrl(СonstantUrl.urlWebTables);
+        openUrl(Url.urlWebTables);
     }
     @Test
     public void addUserTest(){
-        objWebTables.addTest("eee","aaa","sss","10","ss","sss");
+        objWebTables.addBodyTest("eee","aaa","sss","10","ss","sss");
     }
     @Test
     public void editTest(){
-        objWebTables.editTest("dd","dd","ss","23","fdfd","dfd");
+        objWebTables.editBodyTest("dd","dd","ss","23","fdfd","dfd");
     }
     @After
     public void quitDriver() {

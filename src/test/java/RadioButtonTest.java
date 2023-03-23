@@ -2,13 +2,12 @@ import elements.RadioButton;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
 public class RadioButtonTest extends BaseTest {
     RadioButton objRadioButton = new RadioButton(getDriver());
     @Before
     public void openTest(){
-      openUrl(СonstantUrl.urlRadioButton);
+      openUrl(Url.urlRadioButton);
     }
     @Test
     public void testYesButton(){

@@ -1,4 +1,4 @@
-public class СonstantUrl {
+public class Url {
 
     public static final String urlTextBox = "https://demoqa.com/text-box";
     public static final String urlCheckBox= "https://demoqa.com/checkbox";

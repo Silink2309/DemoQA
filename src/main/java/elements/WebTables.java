@@ -1,5 +1,6 @@
 package elements;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -46,6 +47,7 @@ public class WebTables {
     public void clickDeleteButton(){driver.findElement(deleteButton).click();}
     public void clickRowsButton(){driver.findElement(rowsButton).click();}
     public void clickSubmitButton(){driver.findElement(submitButton).click();}
+    public void fillingsSearch(){driver.findElement(fieldSearch).sendKeys("");}
 
     //Заполнение полей регистрации
         public void fillFirstNameRegister(String firstName){driver.findElement(firstNameFiled).sendKeys(firstName);}
@@ -54,7 +56,7 @@ public class WebTables {
         public void fillAgeFiledRegister(String age){driver.findElement(ageFiled).sendKeys(age);}
         public void fillSalaryFiledRegister(String salary){driver.findElement(salaryFiled).sendKeys(salary);}
         public void fillDepartmentFiledRegister(String department){driver.findElement(departmentFiled).sendKeys(department);}
-
+        public void clickDeleteUser(){driver.findElement(deleteButton).click();}
 
     public void waitForLoad(By selector) {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(selector));
@@ -64,8 +66,8 @@ public class WebTables {
         WebElement changesDelete = driver.findElement(selector);
         changesDelete.clear();
     }
-//Добавление пользователя
-public void addTest(String firstName,String lastName,String email,String age,String salary,String department){
+//Тело Теста добавление пользователя
+public void addBodyTest(String firstName,String lastName,String email,String age,String salary,String department){
     waitForLoad(addUserButton);
     clickAddUserButton();
     waitForLoad(firstNameFiled);
@@ -78,8 +80,8 @@ public void addTest(String firstName,String lastName,String email,String age,Str
     clickSubmitButton();
 }
 
-//Изменение уже созданного пользователя
-    public void editTest(String firstName,String lastName,String email,String age,String salary,String department){
+//Тело Теста изменение уже созданного пользователя
+    public void editBodyTest(String firstName, String lastName, String email, String age, String salary, String department){
         waitForLoad(editButton);
         clickEditButton();
         waitForLoad(firstNameFiled);
@@ -96,6 +98,19 @@ public void addTest(String firstName,String lastName,String email,String age,Str
         deleteFiled(departmentFiled);
         fillDepartmentFiledRegister(department);
         clickSubmitButton();
+    }
+
+    public void searchBodyTest(){
+        waitForLoad(fieldSearch);
+        fillingsSearch();
+        String actual = driver.findElement(By.xpath("(//div[@role='gridcell'])[1]")).getText();
+        Assert.assertEquals("Ошибка","Kierra",actual);
+    }
+
+    public void deleteBodyTest(){
+        waitForLoad(deleteButton);
+        clickDeleteUser();
+
     }
 
 
